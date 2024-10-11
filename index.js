@@ -4,7 +4,8 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { getData } from './services/cryptoService.js';
 import {job} from './services/cronJob.js';
-import {getSpecificData} from './services/cryptoSpecificService.js'
+import {getSpecificData} from './services/cryptoSpecificService.js';
+import { calculate } from './services/standardDeviationService.js';
 const app = express();
 const port = 3000;
 
@@ -29,7 +30,9 @@ app.get('/stats',async (req,res)=>{
 });
 
 app.get('/deviation',async (req,res)=>{
-    res.send("work to do");
+    let coin = req.query;
+    let deviation = await calculate(coin.coin);
+    res.send({"deviation":deviation});
 })
 
 app.listen(port,()=>{

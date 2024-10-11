@@ -13,9 +13,9 @@ export async function job(){
             await coins.create({
                 name: coin,
                 symbol: coin,
-                price: data.usd,
-                marketCap: data.usd_market_cap,
-                change24h: data.usd_24h_change,
+                price: coinData.usd,
+                marketCap: coinData.usd_market_cap,
+                change24h: coinData.usd_24h_change,
                 lastUpdated:Date.now()
             });
         }
