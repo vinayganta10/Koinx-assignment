@@ -27,7 +27,8 @@ export async function job(){
     }
 }
 
-cron.schedule('*/2 * * * *',()=>{
+//cron job runs for 1hr
+cron.schedule('0 */1 * * *',()=>{
     console.log('Running crypto fetch job');
     job();
 });

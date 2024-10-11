@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { getData } from './services/cryptoService.js';
 import {job} from './services/cronJob.js';
+import {getSpecificData} from './services/cryptoSpecificService.js'
 const app = express();
 const port = 3000;
 
@@ -23,7 +24,7 @@ app.get('/',(req,res)=>{
 
 app.get('/stats',async (req,res)=>{
     let coin = req.query;
-    let data = await getSpecificData(coin);
+    let data = await getSpecificData(coin.coin);
     res.send(data);
 });
 
